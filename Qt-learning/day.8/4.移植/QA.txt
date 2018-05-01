@@ -1,0 +1,29 @@
+错误信息：
+# ./configure ....
+MySQL support cannot be enabled due to functionality tests!
+
+错误原因：
+MySQL已经安装，QT编译系统找不到MySQL的头文件及库
+
+解决办法：
+修改/opt/qt-everywhere-opensource-src-4.8.6/mkspecs/qws/linux-arm-g++/qmake.conf
+QMAKE_INCDIR		+= /opt/tslib-3.x/build/include
+QMAKE_LIBDIR		+= /opt/tslib-3.x/build/lib
+================================================================================
+错误信息：
+# ./configure ....
+The tslib functionality test failed!
+ You might need to modify the include and library search paths by editing
+ QMAKE_INCDIR and QMAKE_LIBDIR in
+ /opt/qt-everywhere-opensource-src-4.8.6/mkspecs/qws/linux-arm-g++.
+
+错误原因：
+tslib已经安装，QT编译系统找不到tslib的头文件及库
+
+解决办法：
+交叉编译工具链的命令命令引起的，qt认可的是arm-linux-xxx
+
+修改/opt/qt-everywhere-opensource-src-4.8.6/mkspecs/qws/linux-arm-g++/qmake.conf
+QMAKE_INCDIR		+= /opt/tslib-3.x/build/include
+QMAKE_LIBDIR		+= /opt/tslib-3.x/build/lib
+================================================================================

@@ -1,0 +1,79 @@
+# apt-get install mysql-server libmysql++-dev
+# apt-get install sqlite3 libsqlite3-dev
+
+# export PATH=$PATH=:/opt/arm-2010.09/bin/
+# echo "ac_cv_func_malloc_0_nonnull=yes" > arm-linux.cache
+# ./configure --host=arm-none-linux-gnueabi --target=arm-none-linux-gnueabi --prefix=$PWD/build --cache-file=arm-linux.cache
+
+# make confclean
+#./configure -prefix $PWD/build -confirm-license -release -opensource -shared -fast -largefile -qt-sql-sqlite -no-qt3support -multimedia -audio-backend -no-phonon -svg -webkit -script -qt-libtiff -qt-libpng -qt-libmng -qt-libjpeg -optimized-qmake -no-nis -no-cups -no-pch -embedded arm -xplatform qws/linux-arm-gnueabi-g++  -little-endian -host-little-endian -depths 8,16,24,32 -qt-gfx-linuxfb -no-gfx-qvfb -qt-kbd-tty -nomake examples -nomake docs -no-xcursor -no-xfixes -no-xrandr -no-xrender -no-mmx -no-sse -no-sse2 -no-3dnow -qt-mouse-tslib -I/opt/tslib-1.4/build/include -L/opt/tslib-1.4/build/lib
+
+#./configure -prefix $PWD/build -confirm-license -release -opensource -shared -fast -largefile -qt-sql-sqlite -no-qt3support -multimedia -audio-backend -no-phonon -svg -webkit -script -qt-libtiff -qt-libpng -qt-libmng -qt-libjpeg -optimized-qmake -no-nis -no-cups -no-pch -embedded arm -xplatform qws/linux-arm-gnueabi-g++  -little-endian -host-little-endian -depths 8,16,24,32 -qt-gfx-linuxfb -no-gfx-qvfb -qt-kbd-tty -nomake examples -nomake docs -no-xcursor -no-xfixes -no-xrandr -no-xrender -no-mmx -no-sse -no-sse2 -no-3dnow -qt-mouse-tslib -I/opt/tslib-1.4/build/include -L/opt/tslib-1.4/build/lib -D__ARM_ARCH_5TEJ__
+
+--------------------------------------------------------------------
+Building on:   qws/linux-x86-g++
+Building for:  qws/linux-arm-gnueabi-g++
+Architecture:  arm
+Host architecture: i386
+
+Debug .................. no
+Qt 3 compatibility ..... no
+QtDBus module .......... no
+QtConcurrent code ...... yes
+QtGui module ........... yes
+QtScript module ........ yes
+QtScriptTools module ... yes
+QtXmlPatterns module ... no
+Phonon module .......... no
+Multimedia module ...... yes
+SVG module ............. yes
+WebKit module .......... yes
+JavaScriptCore JIT ..... To be decided by JavaScriptCore
+Declarative module ..... yes
+Declarative debugging ...yes
+Support for S60 ........ no
+Symbian DEF files ...... no
+STL support ............ yes
+PCH support ............ no
+MMX/3DNOW/SSE/SSE2/SSE3. no/no/no/no/no
+SSSE3/SSE4.1/SSE4.2..... no/no/no
+AVX..................... no
+iWMMXt support ......... no
+NEON support ........... yes
+IPv6 support ........... yes
+IPv6 ifname support .... yes
+getaddrinfo support .... yes
+getifaddrs support ..... yes
+Accessibility .......... yes
+NIS support ............ no
+CUPS support ........... no
+Iconv support .......... no
+Glib support ........... no
+GStreamer support ...... no
+PulseAudio support ..... no
+Large File support ..... yes
+GIF support ............ plugin
+TIFF support ........... plugin (qt)
+JPEG support ........... plugin (qt)
+PNG support ............ yes (qt)
+MNG support ............ plugin (qt)
+zlib support ........... system
+Session management ..... no
+Embedded support ....... arm
+Freetype2 support ...... auto (yes)
+Graphics (qt) .......... linuxfb multiscreen linuxfb
+Graphics (plugin) ...... 
+Decorations (qt) ....... styled windows default
+Decorations (plugin) ... 
+Keyboard driver (qt) ... tty tty
+Keyboard driver (plugin) .. 
+Mouse driver (qt) ...... pc linuxtp tslib
+Mouse driver (plugin) .. 
+OpenGL support ......... no
+OpenVG support ......... no
+SQLite support ......... qt (qt)
+OpenSSL support ........ yes (run-time)
+Alsa support ........... yes
+ICD support ............ no
+libICU support ......... no
+Use system proxies ..... no

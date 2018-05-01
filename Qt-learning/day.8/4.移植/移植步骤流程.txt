@@ -1,0 +1,58 @@
+tslib移植
+1、下载源码
+2、解压
+# tar xvf tslib1.4.gz
+# cd tslib
+
+3、配置生成Makefile
+# ./autogen.sh
+# echo "ac_cv_func_malloc_0_nonnull=yes" > aaa.cache
+# export PATH=/opt/FriendlyARM/toolschain/4.4.3/bin:$PATH
+# ./configure --host=arm-linux --target=arm-linux --prefix=$PWD/build --cache-file=aaa.cache
+
+#make
+#make install
+
+4、安装路径下包含有开发及运行时用的文件
+把build目录下的lib/*.so.*拷贝目标板tslib/lib目录下
+把build目录下的lib/ts/*.so.*/tslib/lib/ts
+把build目录下的etc/ts.conf拷贝到目标板/etc目录下
+
+移植配置
+在/etc/profile及/etc/init.d/rcS中添加如下配置
+
+export TSLIB_TSDEVICE=/dev/event0    
+export TSLIB_CONFFILE=/etc/ts.conf    
+export TSLIB_PLUGINDIR=/tslib/lib/ts    
+export TSLIB_CALIBFILE=/etc/pointercal
+export LD_LIBRARY_PATH=/tslib/lib:$LD_LIBRARY_PATH
+
+===============================================================================================
+qt移植
+
+1、下载源码、解压
+#tar xvf qt-embedded-linux-opensource-src-4.5.3.tar.gz
+
+2、配置环境变量
+# export PATH=/opt/FriendlyARM/toolschain/4.4.3/bin:$PATH
+
+3、配置生成Makefile
+# ./configure -prefix $PWD/build -release -shared -fast -no-pch -no-qt3support -qt-sql-sqlite -qt-libtiff -qt-libmng -qt-libjpeg -qt-zlib -qt-libpng -qt-freetype -xplatform qws/linux-arm-g++ -embedded arm -depths 4,8,16,32 -little-endian -no-openssl -nomake examples -nomake demos -nomake tools -optimized-qmake -phonon-backend -no-nis -no-opengl -no-cups -no-xcursor -no-xfixes -no-xrandr -no-xrender -no-xkb -no-sm -no-xinerama -no-xshape -no-separate-debug-info -no-qvfb -qt-gfx-linuxfb -no-gfx-qvfb  -no-kbd-qvfb  -no-mouse-qvfb -no-webkit -confirm-license -qt-mouse-tslib -I/media/work/qt/tslib/build/include -L/media/work/qt/tslib/build/lib
+
+4、编译
+#make 
+
+5、安装
+#make install
+
+6、移植配置脚本
+在/etc/profile及/etc/init.d/rcS中添加如下配置
+
+export QTDIR=/qt    
+export QWS_DISPLAY="LinuxFB:/dev/fb0"    
+export QWS_SIZE=320x240    
+export QWS_MOUSE_PROTO="Tslib:/dev/event0"    
+export QT_PLUGIN_PATH=$QTDIR/plugins/    
+export QT_QWS_FONTDIR=$QTDIR/lib/fonts/
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+
