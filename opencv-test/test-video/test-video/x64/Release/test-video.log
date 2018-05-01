@@ -1,0 +1,8 @@
+﻿  image_change.cpp
+  正在生成代码
+d:\github\test-opencv\test-video\test-video\image_change.cpp(212): warning C4715: “cloning_demo”: 不是所有的控件路径都返回值
+  2 of 299 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  test-video.vcxproj -> D:\GitHub\test-opencv\test-video\x64\Release\test-video.exe

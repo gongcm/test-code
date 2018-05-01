@@ -1,0 +1,2 @@
+frame numbers :244
+frame rate:15
