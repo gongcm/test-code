@@ -1,0 +1,79 @@
+
+
+#include <stdio.h>
+#include <pthread.h>
+#include <string.h> 
+#include <stdlib.h>
+
+typedef int int32_t;
+typedef unsigned int uint32_t;
+typedef short    int16_t;
+typedef unsigned short uint16_t;
+typedef unsigned uint8_t;
+
+
+typedef struct{
+    uint8_t * mbuf;
+    int32_t bufsize;
+    char * p_read;
+    char * p_write;
+    uint32_t is_w;
+    uint32_t is_r;
+    pthread_mutex_t * mutex;
+}loopbuf_t;
+
+loopbuf_t* loopbuf_init(int32_t bufsize,pthread_mutex_t * mutex){
+
+    loopbuf_t * lb = (loopbuf_t *)malloc(sizeof(loopbuf_t));
+
+    if(lb == NULL){
+        printf("Fail to malloc loopbuf_t\n");
+        exit(EXIT_FAILURE);
+    }
+    memset(lb,0,sizeof(loopbuf_t));
+
+    lb->mbuf = (uint8_t *)malloc(bufsize);
+ 
+    if(lb->mbuf == NULL){
+        printf("Fail to malloc lb->mbuf\n");
+        exit(EXIT_FAILURE);
+    }
+    memset(lb->mbuf,0,bufsize);
+
+    lb->bufsize = bufsize;
+    lb->p_read = lb->p_write = lb->mbuf;
+
+    lb->mutex = mutex;
+    return lb;
+}
+
+uint32_t put_buffer(loopbuf_t *lb,uint8_t *buf,uint32_t len){
+    uint32_t datalen;    
+
+    pthread_mutex_lock(lb->mutex); 
+    len = min(len,(uint32_t)(lb->bufsize -(lb->p_write-lb->p_read)));
+
+    datalen = min(len,(uint32_t)(lb->bufsize-(lb->mbuf - lb->p_write)));
+    memcpy(lb->p_write,buf,datalen);
+    memcpy(lb->mbuf,buf+datalen,len - datalen);
+
+    lb->p_write += len;
+    pthread_mutex_unlock(lb->mutex);
+
+    return len;
+}
+
+uint32_t get_buffer(loopbuf_t *lb,uint8_t * buf,uint32_t len){
+    uint32_t datalen;
+    pthread_mutex_lock(lb->mutex);
+    len = min(len,lb->p_write - lb->p_read);
+    
+    datalen = min(len,(uint32_t)(lb->bufsize -(lb->mbuf- lb->p_read)));
+
+    memcpy(buf,lb->p_read,datalen);
+    memcpy(buf+datalen,lb->mbuf,len - datalen);
+    lb->p_read += len;
+
+    pthread_mutex_unlock(lb->mutex);
+    return len;
+}

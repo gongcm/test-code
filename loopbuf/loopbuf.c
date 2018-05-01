@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef int int32_t;
+typedef unsigned int uint32_t;
+typedef short    int16_t;
+typedef unsigned short uint16_t;
+typedef unsigned char uint8_t;
+
+
+typedef struct{
+    uint8_t * mbuf;
+    uint32_t bufsize;
+    uint32_t p_read;
+    uint32_t p_write;
+    uint32_t is_w;
+    uint32_t is_r;
+}loopbuf_t;
+
+loopbuf_t* loopbuf_init(loopbuf_t *lb,uint32_t bufsize){
+
+    lb = (loopbuf_t *)malloc(sizeof(loopbuf_t));
+
+    if(lb == NULL){
+        printf("Fail to malloc loopbuf_t\n");
+        exit(EXIT_FAILURE);
+    }
+    memset(lb,0,sizeof(loopbuf_t));
+
+    lb->mbuf = (uint8_t *)malloc(bufsize);
+
+    if(lb->mbuf == NULL){
+        printf("Fail to malloc lb->mbuf\n");
+        exit(EXIT_FAILURE);
+    }
+    memset(lb->mbuf,0,bufsize);
+
+    lb->bufsize = bufsize;
+    lb->p_read = lb->p_write = 0;
+
+    lb->is_w = 0;
+    lb->is_r = 0;
+
+    return lb;
+}
+
+void loopbuf_exit(loopbuf_t *lb){
+    if(lb != NULL){
+        if(lb->mbuf != NULL){
+            free(lb->mbuf);
+        }
+        free(lb);
+    }    
+}
+
+uint32_t put_buffer(loopbuf_t *lb,uint8_t * buf,uint32_t size){
+    uint32_t remain;
+    uint32_t len;
+   
+    if(lb->p_write > lb->p_read){
+        
+        remain = lb->bufsize - lb->p_write + lb->p_read;
+       
+        if(remain >= size){
+            
+            if(lb->bufsize - lb->p_write >=size){
+                memcpy(&lb->mbuf[lb->p_write],buf,size);
+                lb->p_write += size;
+            }else{
+                
+                memcpy(&lb->mbuf[lb->p_write],buf,lb->bufsize -lb->p_write);
+                len = size -(lb->bufsize -lb->p_write);
+                memcpy(lb->mbuf,&buf[size -lb->bufsize +lb->p_write-1],len);
+                lb->p_write = 0;
+                lb->p_write += len;
+            }
+        }
+    }else{
+        remain = lb->p_read - lb->p_write;
+        if(remain >= size){
+            memcpy(&lb->mbuf[lb->p_write],buf,size);
+            lb->p_write += size;
+        }
+    }
+ 
+    return size;
+}
+
+uint32_t get_buffer(loopbuf_t *lb,uint8_t *buf,uint32_t size){
+    uint32_t datalen;
+    uint32_t len;
+     if(lb->p_write > lb->p_read){
+        datalen = lb->p_write - lb->p_read;
+        if(datalen <= size){
+            memcpy(buf,&lb->mbuf[lb->p_read],datalen);
+            lb->p_read +=datalen;
+            return datalen;
+        }
+
+    }else{
+        datalen = lb->bufsize - lb->p_read + lb->p_write;
+        if(datalen <= size){
+
+                len = lb->bufsize -lb->p_read;
+                memcpy(buf,&lb->mbuf[lb->p_read],len);
+                memcpy(&buf[size-len-1],lb->mbuf,size -len);
+                lb->p_read = 0;
+                lb->p_read += size -len;
+        }
+    }
+
+    if(datalen >= size){
+        lb->is_r = datalen;
+        return datalen;
+    }
+    printf("buf = %s\n",buf);
+    return size;
+}
