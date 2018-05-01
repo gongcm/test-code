@@ -1,0 +1,2 @@
+persist.sys.rom.version=120666.0.0.0.10415
+persist.sys.proj.num=120666

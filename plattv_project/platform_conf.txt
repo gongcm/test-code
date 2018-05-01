@@ -1,0 +1,1 @@
+out_dir=out/target/product/Hi3798MV200

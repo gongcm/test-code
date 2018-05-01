@@ -1,0 +1,20 @@
+# device                                        mountpoint  fstype
+/dev/block/platform/soc/by-name/fastboot   /fastboot   emmc    defaults        defaults
+/dev/block/platform/soc/by-name/bootargs   /bootargs   emmc    defaults        defaults
+/dev/block/platform/soc/by-name/recovery   /recovery   emmc    defaults        defaults
+/dev/block/platform/soc/by-name/baseparam  /baseparam  emmc    defaults        defaults
+/dev/block/platform/soc/by-name/logo       /logo       emmc    defaults        defaults
+/dev/block/platform/soc/by-name/fastplay   /fastplay   emmc    defaults        defaults
+/dev/block/platform/soc/by-name/kernel     /boot       emmc    defaults        defaults
+/dev/block/platform/soc/by-name/userapi    /userapi    emmc    defaults        defaults
+/dev/block/platform/soc/by-name/hibdrv     /hibdrv     emmc    defaults        defaults
+/dev/block/platform/soc/by-name/misc       /misc       emmc    defaults        defaults
+#/dev/block/platform/soc/by-name/properties /properties      emmc    defaults        defaults
+/dev/block/platform/soc/by-name/system     /system     ext4    defaults        defaults
+/dev/block/platform/soc/by-name/userdata   /data       ext4    defaults        defaults
+/dev/block/platform/soc/by-name/cache      /cache      ext4    defaults        defaults
+/dev/block/platform/soc/by-name/private    /private      ext4    defaults        defaults
+/dev/block/sda1                                 /sdcard     auto    defaults        defaults
+/dev/block/platform/soc/by-name/otapackage /otapackage ext4    defaults        defaults
+/dev/block/platform/soc/by-name/backup     /backup	    ext4    defaults        defaults
+

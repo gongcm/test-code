@@ -1,0 +1,9 @@
+echo "***** config PATH. Begin Begin... *****"
+source /home/joy/shell/setlocale.sh
+source /home/joy/tools/jdk1.6.0_23.sh
+source /home/joy/tools/arm-hisiv200-linux.sh
+echo "PATH:$PATH"
+source build/envsetup.sh
+lunch Hi3798MV200-eng
+make update-api
+echo "***** config PATH. End End... *****"
