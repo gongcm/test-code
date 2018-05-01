@@ -1,0 +1,3 @@
+﻿  源.cpp
+d:\github\test-opencv\add-noise\add-noise\源.cpp(49): warning C4244: “=”: 从“double”转换到“uchar”，可能丢失数据
+  add-noise.vcxproj -> D:\GitHub\test-opencv\add-noise\Debug\add-noise.exe

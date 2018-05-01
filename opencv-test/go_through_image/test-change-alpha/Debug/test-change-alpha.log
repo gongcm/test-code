@@ -1,0 +1,4 @@
+﻿  test-alpha.cpp
+d:\github\test-opencv\go_through_image\test-change-alpha\test-alpha.cpp(20): warning C4244: “=”: 从“double”转换到“uchar”，可能丢失数据
+d:\github\test-opencv\go_through_image\test-change-alpha\test-alpha.cpp(30): warning C4101: “g_Data”: 未引用的局部变量
+  test-change-alpha.vcxproj -> D:\GitHub\test-opencv\go_through_image\Debug\test-change-alpha.exe
