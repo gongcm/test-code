@@ -1,0 +1,12 @@
+Debug/
+Release/
+debug/
+release/
+x64/
+x86/
+.vs/
+*.so
+*.apk
+*.bz2
+*.gz
+build-*
