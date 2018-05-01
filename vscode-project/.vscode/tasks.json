@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "make.exe",
+            "args": [
+                "OS=Windows_NT",
+                "default"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-debug",
+            "command": "make.exe",
+            "args": [
+                "OS=Windows_NT",
+                "debug"
+                ],
+            "type": "shell"
+        },
+        {
+            "label": "clean",
+            "command": "make.exe",
+            "args": [ "OS=Windows_NT","clean"],
+            "type": "shell"
+        }
+    ]
+}
